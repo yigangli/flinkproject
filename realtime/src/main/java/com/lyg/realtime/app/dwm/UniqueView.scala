@@ -1,6 +1,7 @@
 package com.lyg.realtime.app.dwm
 
 import com.alibaba.fastjson.{JSON, JSONObject}
+import com.lyg.realtime.common.Config
 import com.lyg.realtime.utils.MyKafkaUtil
 import org.apache.flink.api.common.functions.{MapFunction, RichFilterFunction}
 import org.apache.flink.api.common.restartstrategy.RestartStrategies
@@ -29,7 +30,7 @@ object UniqueView {
     env.setParallelism(1)
     env.enableCheckpointing(5000,CheckpointingMode.EXACTLY_ONCE)
     env.getCheckpointConfig.setCheckpointTimeout(60000)
-    env.setStateBackend(new FsStateBackend("hdfs://cdh-node1:8020/home/flink/checkpoint/UniqueView"))
+    env.setStateBackend(new FsStateBackend(Config.checkpoint_url+"UniqueView"))
 
     env.setRestartStrategy(RestartStrategies.noRestart())
     System.setProperty("HADOOP_USER_NAME", "hdfs")

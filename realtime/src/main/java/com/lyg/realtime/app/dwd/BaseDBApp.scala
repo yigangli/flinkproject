@@ -3,6 +3,7 @@ package com.lyg.realtime.app.dwd
 import com.alibaba.fastjson.{JSON, JSONObject}
 import com.lyg.realtime.app.func.{DimSink, TableProcessFunction}
 import com.lyg.realtime.bean.TableProcess
+import com.lyg.realtime.common.Config
 import com.lyg.realtime.utils.MyKafkaUtil
 import org.apache.flink.api.common.restartstrategy.RestartStrategies
 import org.apache.flink.api.common.serialization.SerializationSchema
@@ -32,7 +33,7 @@ object BaseDBApp {
     //开启checkpoint
     env.enableCheckpointing(5000, CheckpointingMode.EXACTLY_ONCE)
     env.getCheckpointConfig.setCheckpointTimeout(60000)
-    env.setStateBackend(new FsStateBackend("hdfs://cdh-node1:8020/home/flink/checkpoint/basedbapp"))
+    env.setStateBackend(new FsStateBackend(Config.checkpoint_url+"basedbapp"))
 
     //重启策略
     //如果没有开启checkpoint，默认noRestart

@@ -1,6 +1,7 @@
 package com.lyg.realtime.app.dwm
 
 import com.alibaba.fastjson.{JSON, JSONObject}
+import com.lyg.realtime.common.Config
 import com.lyg.realtime.utils.MyKafkaUtil
 import org.apache.flink.api.common.eventtime.{SerializableTimestampAssigner, WatermarkStrategy}
 import org.apache.flink.api.common.functions.MapFunction
@@ -35,7 +36,7 @@ object UserJumpDetailApp {
     env.setParallelism(1)
 
     env.enableCheckpointing(5000,CheckpointingMode.EXACTLY_ONCE)
-    env.setStateBackend(new FsStateBackend("hdfs://cdh-node1:8020/home/flink/checkpoint/UserJumpDetailApp"))
+    env.setStateBackend(new FsStateBackend(Config.checkpoint_url+"UserJumpDetailApp"))
     env.getCheckpointConfig.setCheckpointTimeout(60000)
     env.setRestartStrategy(RestartStrategies.noRestart())
 

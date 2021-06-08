@@ -1,6 +1,7 @@
 package com.lyg.realtime.app.dwd
 
 import com.alibaba.fastjson.{JSON, JSONObject}
+import com.lyg.realtime.common.Config
 import com.lyg.realtime.utils.MyKafkaUtil
 import org.apache.flink.api.common.functions.{MapFunction, RichMapFunction}
 import org.apache.flink.api.common.state.{ValueState, ValueStateDescriptor}
@@ -36,7 +37,7 @@ object BaseLogApp {
     env.getCheckpointConfig.setCheckpointTimeout(60000)
 
     //状态checkpoint保存点
-    env.setStateBackend(new FsStateBackend("hdfs://cdh-node1:8020/home/flink/checkpoint/baselogapp"))
+    env.setStateBackend(new FsStateBackend(Config.checkpoint_url+"baselogapp"))
     System.setProperty("HADOOP_USER_NAME", "hdfs")
 
     val topic = "ods_base_log"

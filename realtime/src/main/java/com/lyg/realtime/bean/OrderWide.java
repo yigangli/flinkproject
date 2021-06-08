@@ -108,5 +108,46 @@ public class OrderWide {
         this.split_coupon_amount=ObjectUtils.firstNonNull(this.split_coupon_amount);
         this.split_total_amount=ObjectUtils.firstNonNull(this.split_total_amount);
     }
+
+    @Override
+    public String toString() {
+        return "OrderWide{" +
+                "detail_id=" + detail_id +
+                ", order_id=" + order_id +
+                ", sku_id=" + sku_id +
+                ", order_price=" + order_price +
+                ", sku_num=" + sku_num +
+                ", sku_name='" + sku_name + '\'' +
+                ", province_id=" + province_id +
+                ", order_status='" + order_status + '\'' +
+                ", user_id=" + user_id +
+                ", total_amount=" + total_amount +
+                ", activity_reduce_amount=" + activity_reduce_amount +
+                ", coupon_reduce_amount=" + coupon_reduce_amount +
+                ", original_total_amount=" + original_total_amount +
+                ", feight_fee=" + feight_fee +
+                ", split_feight_fee=" + split_feight_fee +
+                ", split_activity_amount=" + split_activity_amount +
+                ", split_coupon_amount=" + split_coupon_amount +
+                ", split_total_amount=" + split_total_amount +
+                ", expire_time='" + expire_time + '\'' +
+                ", create_time='" + create_time + '\'' +
+                ", operate_time='" + operate_time + '\'' +
+                ", create_date='" + create_date + '\'' +
+                ", create_hour='" + create_hour + '\'' +
+                ", province_name='" + province_name + '\'' +
+                ", province_area_code='" + province_area_code + '\'' +
+                ", province_iso_code='" + province_iso_code + '\'' +
+                ", province_3166_2_code='" + province_3166_2_code + '\'' +
+                ", user_age=" + user_age +
+                ", user_gender='" + user_gender + '\'' +
+                ", spu_id=" + spu_id +
+                ", tm_id=" + tm_id +
+                ", category3_id=" + category3_id +
+                ", spu_name='" + spu_name + '\'' +
+                ", tm_name='" + tm_name + '\'' +
+                ", category3_name='" + category3_name + '\'' +
+                '}';
+    }
 }
 
