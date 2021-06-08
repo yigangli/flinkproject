@@ -287,7 +287,7 @@ object OrderWideApp {
         orderWideWithTMDstream.print("dim join:")
         orderWideWithTMDstream.map(new MapFunction[OrderWide,String] {
             override def map(orderWide: OrderWide): String = {
-                JSON.toJSONString(orderWide,SerializerFeature.PrettyFormat)
+                JSON.toJSONString(orderWide,SerializerFeature.QuoteFieldNames)
             }
         }).addSink(MyKafkaUtil.getKafkaSink(orderWideSinkTopic))
         env.execute()
