@@ -61,9 +61,7 @@ object BaseDBApp {
 
     //    // TODO: 2动态分流   事实表主流输出到kafka DWD  维度表侧输出流输出到hbases
     val hbaseTag = new OutputTag[JSONObject](TableProcess.SINK_TYPE_HBASE)
-    val kafkaDS: DataStream[JSONObject] = {
-      filterDS.process(new TableProcessFunction(hbaseTag))
-    }
+    val kafkaDS: DataStream[JSONObject] = filterDS.process(new TableProcessFunction(hbaseTag))
     val hbaseDS: DataStream[JSONObject] = kafkaDS.getSideOutput(hbaseTag)
     kafkaDS.print("事实<<<<<<<")
     hbaseDS.print("维度<<<<<<<")

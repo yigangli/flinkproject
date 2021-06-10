@@ -40,7 +40,7 @@ class DimSink extends RichSinkFunction[JSONObject] {
                 conn.commit()
             } catch {
                 case exception: Exception => exception.printStackTrace()
-                    throw new RuntimeException("想phoenix插入数据失败")
+                    throw new RuntimeException("向phoenix插入数据失败")
             } finally {
                 if (ps != null) {
                     ps.close()
